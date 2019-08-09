@@ -150,6 +150,25 @@ client.on("message", message => {
             message.channel.send(help_embed);
     }
 
+
+client.on('message', message => {
+  if (message.content === `${prefix}credits`){
+
+    let serverembed = new Discord.RichEmbed()
+    .setTitle("**Credits:** ⭐")
+    .setThumbnail(`${message.author.avatarURL}`)
+    .setColor("FE656F")
+    .addField("Créateur du bot:","VirTox")
+    .addField("Ses résaux:",'Discord: " TonDarobC’estKoba \nAutres résaux: perso donc non :x:')
+    .setFooter("By YoYo", message.author.avatarURL)
+    .setTimestamp()
+
+    return message.channel.send(serverembed);
+  }
+}
+)
+
+
 })
 
 /*Kick*/
