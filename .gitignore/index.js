@@ -149,12 +149,24 @@ client.on("message", message => {
             .setFooter(".۷เгŦ๏χ - Đєט 🐧#4969")
             message.channel.send(help_embed);
     }
-
-
-
-
-
 })
+
+client.on('message', message => {
+  if (message.content === `${prefix}credits`){
+
+    let serverembed = new Discord.RichEmbed()
+    .setTitle("**Credits:** ⭐")
+    .setThumbnail(`${message.author.avatarURL}`)
+    .setColor("FE656F")
+    .addField("Créateur du bot:","VirToX.")
+    .addField("Ses résaux:",'Discord: "＂۷เгŦ๏χ#4969 \nAutres résaux: perso donc non :x:')
+    .setFooter("By ＂۷เгŦ๏χ#4969", message.author.avatarURL)
+    .setTimestamp()
+
+    return message.channel.send(serverembed);
+  }
+}
+)
 
 /*Kick*/
 client.on('message',message =>{
