@@ -14,18 +14,37 @@ client.on('ready', message => {
     console.log("        *``*___*``*");
   })
 
-client.on('message', async message =>{
-    if(message.content.startsWith(";mp")) {
-  
-      var args = message.content.split(" ").slice(1);
-      var msge = args.join(' ');
-  
-      if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Tut tut tut. Bouge ou jte mange.");
-      if(!msge) return message.channel.send("tell me what you want to send to the entire server ( members who deactivate private messages will receive nothing)")
-      message.guild.members.map(m => m.send(msge))
-      .catch(console.error)
-      console.log("cdm mpall demandé par "+ message.member.displayName + " son id discord " + message.member + ' le mp envoyé "' + message.content.split(" ").slice(1) + `"`)
-  }
+//client.on('message', async message =>{
+//    if(message.content.startsWith("-mp")) {
+//  
+//      var args = message.content.split(" ").slice(1);
+//      var msge = args.join(' ');
+//  
+//      if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.channel.send("Tut tut tut. Bouge ou jte mange.");
+//      if(!msge) return message.channel.send("tell me what you want to send to the entire server ( members who deactivate private messages will receive nothing)")
+//      message.guild.members.map(m => m.send(msge))
+//      .catch(console.error)
+//      console.log("cdm mpall demandé par "+ message.member.displayName + " son id discord " + message.member + ' le mp envoyé "' + message.content.split(" ").slice(1) + `"`)
+//  }
+ 
+ client.on('message', async message => {
+    
+                if(message.content.startsWith(prefix + "mp")) {
+
+                var args = message.content.split(" ").slice(1);
+                var msge = args.join(' ');
+
+                if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Tu n'as pas la permission d'utiliser cette commande ");
+                if(!msge) return message.channel.send("Precise un message (ex, voici l'annonce...)")
+
+                var mpall = new Discord.RichEmbed()
+                .setThumbnail(client.user.avatarURL)
+                .setColor("RANDOM")
+                .addField("__**Nouvelle Notification !**__", msge);
+                message.delete()
+                message.guild.members.map(m => m.send(mpall))
+            }            
+});
 
   const bot = new Discord.Client();
 
